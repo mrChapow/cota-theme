@@ -1,0 +1,216 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "3D Interactive Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Custom",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "colors_accent_1",
+        "default": "#22C55E",
+        "label": "Accent 1",
+        "info": "Primary color for the 3D cube and buttons"
+      },
+      {
+        "type": "color",
+        "id": "colors_accent_2", 
+        "default": "#16A34A",
+        "label": "Accent 2",
+        "info": "Secondary green color for gradients"
+      },
+      {
+        "type": "color",
+        "id": "colors_text",
+        "default": "#FFFFFF",
+        "label": "Text",
+        "info": "Primary text color"
+      },
+      {
+        "type": "color",
+        "id": "colors_background_1",
+        "default": "#000000",
+        "label": "Background",
+        "info": "Primary background color"
+      },
+      {
+        "type": "color",
+        "id": "colors_background_2",
+        "default": "#111111", 
+        "label": "Secondary background"
+      },
+      {
+        "type": "color",
+        "id": "colors_solid_button_labels",
+        "default": "#FFFFFF",
+        "label": "Solid button labels"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Headings"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "default": "assistant_n4",
+        "label": "Font",
+        "info": "Selecting a different font can affect the speed of your online store. [Learn more about system fonts.](https://help.shopify.com/manual/online-store/os/store-speed/improving-speed#fonts)"
+      },
+      {
+        "type": "range",
+        "id": "heading_scale",
+        "min": 100,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "label": "Heading scale",
+        "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Body"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "assistant_n4",
+        "label": "Font",
+        "info": "Selecting a different font can affect the speed of your online store. [Learn more about system fonts.](https://help.shopify.com/manual/online-store/os/store-speed/improving-speed#fonts)"
+      },
+      {
+        "type": "range",
+        "id": "body_scale",
+        "min": 100,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "label": "Body scale",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "header",
+        "content": "3D Cube Positioning"
+      },
+      {
+        "type": "range",
+        "id": "desktop_price_top",
+        "min": 10,
+        "max": 90,
+        "step": 5,
+        "unit": "vh",
+        "label": "Desktop price panel top position",
+        "default": 25
+      },
+      {
+        "type": "range",
+        "id": "desktop_desc_top", 
+        "min": 10,
+        "max": 90,
+        "step": 5,
+        "unit": "vh",
+        "label": "Desktop description panel top position",
+        "default": 45
+      },
+      {
+        "type": "range",
+        "id": "desktop_panels_right",
+        "min": 10,
+        "max": 40,
+        "step": 5,
+        "unit": "vw",
+        "label": "Desktop panels right position",
+        "default": 25
+      },
+      {
+        "type": "range",
+        "id": "mobile_price_bottom",
+        "min": 10,
+        "max": 90,
+        "step": 2,
+        "unit": "vh", 
+        "label": "Mobile price panel bottom position",
+        "default": 22
+      },
+      {
+        "type": "range",
+        "id": "mobile_desc_bottom",
+        "min": 2,
+        "max": 50,
+        "step": 2,
+        "unit": "vh",
+        "label": "Mobile description panel bottom position", 
+        "default": 6
+      }
+    ]
+  },
+  {
+    "name": "Product",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product Information"
+      },
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Support email",
+        "default": "support@helm.com",
+        "info": "Email displayed for customer questions"
+      },
+      {
+        "type": "url", 
+        "id": "early_support_url",
+        "label": "Early support purchase URL",
+        "info": "Stripe or other payment link for early supporters"
+      }
+    ]
+  },
+  {
+    "name": "Animations",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Hover effects"
+      },
+      {
+        "type": "select",
+        "id": "animations_hover_elements",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "fade-in",
+            "label": "Fade in"
+          },
+          {
+            "value": "underline",
+            "label": "Underline"
+          }
+        ],
+        "default": "none",
+        "label": "Hover effect for interactive elements"
+      }
+    ]
+  }
+]
