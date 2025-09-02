@@ -1,0 +1,147 @@
+{%- assign product_form_id = 'product-form-' | append: section.id -%}
+
+<div class="helm-3d-container">
+  <!-- 3D Canvas Container -->
+  <div class="canvas-container">
+    <canvas id="three-canvas"></canvas>
+    
+    <!-- Price Panel -->
+    <div class="glass-panel price-panel" id="price-panel">
+      <div style="text-align: center;">
+        <h2>{{ product.title | default: 'Helm' }}</h2>
+        <h1>{{ product.price | money | default: '$299.99' }}</h1>
+        
+        <!-- Shopify Add to Cart Form -->
+        {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          
+          <div class="product-form__buttons">
+            <button
+              id="ProductSubmitButton-{{ section.id }}"
+              type="submit"
+              name="add"
+              class="buy-button btn product-form__cart-submit{% if product.selected_or_first_available_variant.available == false %} disabled{% endif %}"
+              {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+            >
+              <span>
+                {%- if product.selected_or_first_available_variant.available -%}
+                  {{ 'products.product.add_to_cart' | t }}
+                {%- else -%}
+                  {{ 'products.product.sold_out' | t }}
+                {%- endif -%}
+              </span>
+              <div class="loading-overlay__spinner hidden">
+                <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                </svg>
+              </div>
+            </button>
+          </div>
+        {%- endform -%}
+      </div>
+    </div>
+
+    <!-- Description Panel -->
+    <div class="glass-panel description-panel" id="description-panel">
+      <div>
+        <h2>Product Description:</h2>
+        <div style="margin-top: 12px;">
+          <p style="margin-bottom: 12px;">
+            {{ product.description | default: 'Cota Pilot Project' | truncate: 100 }}
+          </p>
+          {%- if settings.contact_email -%}
+            <p class="text-sm" style="opacity: 0.8;">
+              Questions? {{ settings.contact_email | default: 'support@helm.com' }}
+            </p>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email Collection Modal (for out of stock items) -->
+  <div class="modal-overlay" id="email-modal">
+    <div class="modal-content">
+      <button class="close-button" onclick="closeModal()">&times;</button>
+      <h2 class="modal-title">Thank you for your interest!</h2>
+      <p class="modal-text">Unfortunately, this item isn't available yet. We'd love to keep in contact.</p>
+      
+      <!-- Shopify Customer Form -->
+      {%- form 'customer', customer, class: 'newsletter-form' -%}
+        <input name="contact[tags]" type="hidden" value="newsletter">
+        <div class="form-group">
+          <label class="form-label">📧 Email:</label>
+          <input 
+            type="email" 
+            name="contact[email]"
+            class="form-input" 
+            placeholder="your@email.com" 
+            required
+            autocorrect="off"
+            autocapitalize="off"
+          >
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">📷 Instagram:</label>
+          <input 
+            type="text" 
+            name="contact[note][instagram]"
+            class="form-input" 
+            placeholder="@yourusername"
+          >
+        </div>
+        
+        <button type="submit" class="submit-button">Submit</button>
+      {%- endform -%}
+      
+      <!-- Early Support Link -->
+      {%- if settings.early_support_url -%}
+        <a href="{{ settings.early_support_url }}" 
+           target="_blank" 
+           class="early-support-link">
+          I don't care, I want to buy this early in support.
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<!-- Product JSON-LD structured data -->
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": {{ product.title | json }},
+    "url": {{ shop.url | append: product.url | json }},
+    {%- if seo_media -%}
+      "image": [
+        {{ seo_media | image_url: width: 1920 | prepend: "https:" | json }}
+      ],
+    {%- endif -%}
+    "description": {{ product.description | strip_html | json }},
+    {%- if product.selected_or_first_available_variant -%}
+      "sku": {{ product.selected_or_first_available_variant.sku | json }},
+      "offers": [
+        {
+          "@type": "Offer",
+          "availability": "http://schema.org/{% if product.selected_or_first_available_variant.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price": {{ product.selected_or_first_available_variant.price | divided_by: 100.00 | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "url": {{ shop.url | append: product.selected_or_first_available_variant.url | json }}
+        }
+      ]
+    {%- endif -%}
+  }
+</script>
+
+<script>
+  // Product-specific JavaScript variables
+  window.helmProduct = {
+    id: {{ product.id | json }},
+    title: {{ product.title | json }},
+    price: {{ product.price | money_without_currency | json }},
+    available: {{ product.available | json }},
+    description: {{ product.description | strip_html | truncate: 100 | json }}
+  };
+</script>
