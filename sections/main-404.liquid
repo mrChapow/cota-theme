@@ -1,0 +1,21 @@
+<div class="page-width page-width--narrow">
+  <div id="MainContent" class="main-content" role="main">
+    <div class="center">
+      <h1 class="title title--primary">
+        {{ 'templates.404.title' | t }}
+      </h1>
+      <p>{{ 'templates.404.subtext' | t }}</p>
+      <a href="{{ routes.root_url }}" class="button">
+        {{ 'general.continue_shopping' | t }}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-404.name",
+  "tag": "section",
+  "class": "section"
+}
+{% endschema %}
