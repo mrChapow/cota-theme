@@ -1,0 +1,52 @@
+<div id="root">
+  <div class="canvas-container">
+    <canvas id="three-canvas"></canvas>
+
+    <!-- Price Panel -->
+    <div class="glass-panel price-panel">
+      <div style="text-align: center;">
+        <h1>$299.99</h1>
+        <button class="buy-button" onclick="handlePurchase()">Buy</button>
+      </div>
+    </div>
+
+    <!-- Description Panel -->
+    <div class="glass-panel description-panel">
+      <div>
+        <h2>Helm</h2>
+        <div style="margin-top: 8px;">
+          <p class="text-sm" style="opacity: 0.9;">Cota Pilot Project</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Email Collection Modal -->
+  <div class="modal-overlay" id="email-modal">
+    <div class="modal-content">
+      <button class="close-button" onclick="closeModal()">&times;</button>
+      <h2 class="modal-title">Thank you for your interest!</h2>
+      <p class="modal-text">Unfortunately, this item isn't available yet. We'd love to keep in contact.</p>
+
+      <form id="email-form" onsubmit="handleEmailSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">📧 Email:</label>
+          <input type="email" class="form-input" placeholder="your@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">📷 Instagram:</label>
+          <input type="text" class="form-input" placeholder="@yourusername">
+        </div>
+
+        <button type="submit" class="submit-button">Submit</button>
+      </form>
+
+      <a href="https://buy.stripe.com/test_YOUR_PAYMENT_LINK_HERE"
+         target="_blank"
+         class="early-support-link">
+        I don't care, I want to buy this early in support.
+      </a>
+    </div>
+  </div>
+</div>

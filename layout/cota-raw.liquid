@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code | default: 'en' }}" style="background:#000!important;background-color:#000!important">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Helm - 3D Interactive Product</title>
+    <meta name="theme-color" content="#000000" />
+    <meta name="msapplication-navbutton-color" content="#000000" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    {{ content_for_header }}
+    <link rel="preconnect" href="https://unpkg.com">
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    {{ 'cota-raw.css' | asset_url | stylesheet_tag }}
+  </head>
+  <body>
+    {{ content_for_layout }}
+    {{ 'cota-raw.js' | asset_url | script_tag }}
+  </body>
+</html>
