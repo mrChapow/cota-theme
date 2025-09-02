@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <title>{{ page_title }}{% unless page_title contains shop.name %} - {{ shop.name }}{% endunless %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  {{ content_for_header }}
+  <style>
+    body { 
+      margin: 0; 
+      padding: 20px; 
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    .container { 
+      max-width: 800px; 
+      margin: 0 auto; 
+      text-align: center; 
+    }
+    .product-title { 
+      font-size: 2em; 
+      margin-bottom: 10px; 
+    }
+    .product-price { 
+      font-size: 1.5em; 
+      color: #22c55e; 
+      margin-bottom: 20px; 
+    }
+    .buy-button {
+      background: #22c55e;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    {{ content_for_layout }}
+  </div>
+</body>
+</html>
